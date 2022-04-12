@@ -1,13 +1,10 @@
 # import importlib
 from flask import Flask, redirect, url_for, render_template, jsonify, json
-from gevent.pywsgi import WSGIServer
-
 from EquityBulls import limited
 from iifl import limitedIifl
 from third import headings_links
 
 app = Flask(__name__)  # define app
-
 
 @app.route('/')  # path set
 def home():
@@ -67,9 +64,9 @@ def chart():
 
 app.run(debug=True)
 
-# @app.route("/<name>")
-# def user(name):
-#     return f"Hello {name}"
+@app.route("/status")
+def user(name):
+    return jsonify({"msg": "api is running"})
 
 
 # @app.route("/admin/")
@@ -78,6 +75,4 @@ app.run(debug=True)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    http_server = WSGIServer(('', 5000), app)
-    http_server.serve_forever()
+    app.run(debug=True, host='0.0.0.0', port=80)
