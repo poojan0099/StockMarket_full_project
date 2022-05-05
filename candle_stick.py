@@ -14,14 +14,14 @@ staticPath = os.path.join(rootPath, 'static')
 curdoc().clear
 def generate_html(nameinput: str):
 
-    stocksymbol= nameinput+".NS"
+    stocksymbol = nameinput+".NS"
 
-    now=datetime.now()
-    end=now.date()
-    start=end+timedelta(days=-365)
+    now = datetime.now()
+    end = now.date()
+    start = end+timedelta(days=-365)
     print(end)
     print(start)
-    df=data.DataReader(name=stocksymbol,data_source="yahoo",start=start,end=end)
+    df = data.DataReader(name=stocksymbol,data_source="yahoo",start=start,end=end)
 
     #to make graphs, we need bokeh
     from bokeh.plotting import figure,show,output_file
